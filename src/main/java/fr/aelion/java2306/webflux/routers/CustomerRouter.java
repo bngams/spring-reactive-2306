@@ -15,12 +15,8 @@ public class CustomerRouter {
     @Bean
     public RouterFunction<ServerResponse> route(CustomerHandler customerHandler) {
         return RouterFunctions
-                .route(GET("/customer").and(accept(MediaType.APPLICATION_JSON)), customerHandler::index);
+                .route(GET("/customer").and(accept(MediaType.APPLICATION_JSON)), customerHandler::index)
+                .andRoute(POST("/customer").and(accept(MediaType.APPLICATION_JSON)), customerHandler::post);
     }
 
-    @Bean
-    public RouterFunction<ServerResponse> routePost(CustomerHandler customerHandler) {
-        return RouterFunctions
-                .route(POST("/customer").and(accept(MediaType.APPLICATION_JSON)), customerHandler::post);
-    }
 }
